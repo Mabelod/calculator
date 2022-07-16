@@ -7,5 +7,5 @@ public interface CounterService {
 
     int multiplication(int a, int b);
 
-    int division(int a, int b);
+    double division(int a, int b);
 }
