@@ -8,4 +8,7 @@ public interface CounterService {
     int multiplication(int a, int b);
 
     double division(int a, int b);
+
+    String authorization(String login, String password, String confirmPassword);
+
 }

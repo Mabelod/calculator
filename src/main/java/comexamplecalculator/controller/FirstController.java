@@ -1,12 +1,13 @@
 package comexamplecalculator.controller;
 
+import comexamplecalculator.exception.WrongLoginException;
+import comexamplecalculator.exception.WrongPasswordException;
 import comexamplecalculator.service.CounterService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.swing.text.html.parser.Parser;
 
 @RestController
 @RequestMapping("/calculator")
@@ -44,4 +45,14 @@ public class FirstController {
         return a + " / " + b + " = " + counterService.division(a,b);
     }
 
+    @GetMapping("/authorization")
+    public String authorization(@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("confirmPassword") String confirmPassword) {
+        try {
+            return counterService.authorization(login, password, confirmPassword);
+        } catch (WrongLoginException e) {
+            return "Логин больше 20 символов";
+        } catch (WrongPasswordException e) {
+            return "Пароли не равны";
+        }
+    }
 }
