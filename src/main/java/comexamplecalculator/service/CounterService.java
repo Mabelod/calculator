@@ -9,6 +9,6 @@ public interface CounterService {
 
     double division(int a, int b);
 
-    String authorization(String login, String password, String confirmPassword);
+    Boolean authorization(String login, String password, String confirmPassword);
 
 }

@@ -46,13 +46,13 @@ public class FirstController {
     }
 
     @GetMapping("/authorization")
-    public String authorization(@RequestParam("login") String login,@RequestParam("password") String password,@RequestParam("confirmPassword") String confirmPassword) {
+    public Boolean authorization(@RequestParam("login") String login, @RequestParam("password") String password, @RequestParam("confirmPassword") String confirmPassword) {
         try {
             return counterService.authorization(login, password, confirmPassword);
         } catch (WrongLoginException e) {
-            return "Логин больше 20 символов";
+            return false;
         } catch (WrongPasswordException e) {
-            return "Пароли не равны";
+            return false;
         }
     }
 }
